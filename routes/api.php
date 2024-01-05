@@ -21,16 +21,20 @@ Route::group(['middleware' => 'api'], function () {
         Route::prefix('auth')->group(function () {
             Route::post('register', [AuthController::class, 'register']);
             Route::post('login', [AuthController::class, 'login']);
-            Route::post('logout', [AuthController::class, 'logout']);
-            Route::post('refresh', [AuthController::class, 'refresh']);
-            Route::get('me', [AuthController::class, 'me']);
+            Route::group(['middleware' => 'role:admin|customer'], function () {
+                Route::post('logout', [AuthController::class, 'logout']);
+                Route::post('refresh', [AuthController::class, 'refresh']);
+                Route::get('me', [AuthController::class, 'me']);
+            });
         });
 
         Route::prefix('user')->group(function () {
-            Route::get('/', [UserController::class, 'index']);
-            Route::get('/{id}', [UserController::class, 'show']);
-            Route::put('/{id}', [UserController::class, 'update']);
-            Route::delete('/{id}', [UserController::class, 'destroy']);
+            Route::group(['middleware' => 'role:admin'], function () {
+                Route::get('/', [UserController::class, 'index']);
+                Route::get('/{id}', [UserController::class, 'show']);
+                Route::put('/{id}', [UserController::class, 'update']);
+                Route::delete('/{id}', [UserController::class, 'destroy']);
+            });
         });
     });
 });
