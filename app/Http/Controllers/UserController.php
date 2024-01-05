@@ -29,18 +29,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function index(Request $request): UserCollection
     {
-        $page = $request->get('page', 1);
-        $size = $request->get('size', 10);
+        $page = $request->input('page', 1);
+        $size = $request->input('size', 10);
 
         $users = User::paginate($size, ['*'], 'page', $page);
 
         if ($users) {
-            return response()->json([
-                'message' => 'Users successfully retrieved',
-                new UserCollection($users)
-            ], 200);
+            return new UserCollection($users);
         } else {
             return response()->json([
                 'message' => 'Users not found',

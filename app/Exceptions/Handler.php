@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Spatie\Permission\Exceptions\UnauthorizedException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,7 +35,8 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
-        if ($e instanceof UnauthorizedException) {
+        // if e instanceof UnauthorizedException or e instanceof RouteNotFoundException
+        if ($e instanceof UnauthorizedException || $e instanceof RouteNotFoundException) {
             return response()->json([
                 'message' => 'Unauthorized access'
             ], 401);

@@ -31,9 +31,9 @@ Route::group(['middleware' => 'api'], function () {
         Route::prefix('user')->group(function () {
             Route::group(['middleware' => 'role:admin'], function () {
                 Route::get('/', [UserController::class, 'index']);
-                Route::get('/{id}', [UserController::class, 'show']);
-                Route::put('/{id}', [UserController::class, 'update']);
-                Route::delete('/{id}', [UserController::class, 'destroy']);
+                Route::get('/{id}', [UserController::class, 'show'])->where('id', '[0-9]+');
+                Route::put('/{id}', [UserController::class, 'update'])->where('id', '[0-9]+');
+                Route::delete('/{id}', [UserController::class, 'destroy'])->where('id', '[0-9]+');
             });
         });
     });
