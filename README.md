@@ -27,6 +27,7 @@ Logic authentication memanfaatkan JWT dengan bantuan library tymon/jwt-auth, sed
 3. Buka folder project di Visual Studio Code (`code .` in CLI)
 4. Buka terminal dan run `composer install`
 5. Run 'php artisan migrate'
+6. Run 'php artisan db:seed'
 6. Run 'php artisan serve'
 7. Buka browser dan akses`localhost:8000`
 
