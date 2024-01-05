@@ -35,7 +35,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
-        // if e instanceof UnauthorizedException or e instanceof RouteNotFoundException
         if ($e instanceof UnauthorizedException || $e instanceof RouteNotFoundException) {
             return response()->json([
                 'message' => 'Unauthorized access'

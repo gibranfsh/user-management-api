@@ -35,3 +35,5 @@ Logic authentication memanfaatkan JWT dengan bantuan library tymon/jwt-auth, sed
 Sudah disediakan file `.env.example` yang dapat digunakan untuk membuat file `.env` yang berisi environtment variables yang dibutuhkan oleh aplikasi ini. Untuk menjalankan aplikasi ini, pastikan sudah mengisi environtment variables yang dibutuhkan.
 
 ## Postman API Collection
+
+Postman API Collection Download Link : https://drive.google.com/file/d/1yMk9_rztFEmQ-IBUIXY13-PzHKKa1IF9/view?usp=sharing
